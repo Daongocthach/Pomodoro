@@ -1,0 +1,260 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 20px auto;
+  color: #ffffff;
+}
+
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  background-color: #2e325a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #f87070;
+}
+
+.button.active {
+  background-color: #f87070 !important;
+  color: #fff;
+}
+
+.timer-display {
+  font-size: 5em;
+  margin-top: 30px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#buttons {
+  margin-top: 30px;
+}
+
+#start,
+#pause,
+#stop {
+  background-color: #2e325a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#start:hover {
+  background-color: #219a52;
+}
+
+#pause:hover {
+  background-color: #f4a460;
+  color: #000;
+}
+
+#pause.paused {
+  background-color: #f4a460 !important;
+  color: #000;
+}
+
+#stop:hover {
+  background-color: tomato;
+}
+
+#timer-message {
+  color: #ffffff;
+  background-color: #ff5252;
+  display: none;
+  padding: 0.5em;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 1em;
+  margin-bottom: 1em;
+}
+
+nav a {
+  color: #d7e0ff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #f87070;
+}
+
+.todo-wrapper {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #1e1e1e;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  perspective: 1000px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.todo-inner {
+  position: relative;
+  width: 100%;
+  min-height: 425px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.todo-wrapper.flipped .todo-inner {
+  transform: rotateY(180deg);
+}
+
+.todo-front,
+.todo-back {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.todo-front {
+  z-index: 2;
+}
+
+.todo-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.todo-wrapper h2 {
+  color: #fff;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#todo-form {
+  display: flex;
+  gap: 10px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+#todo-list,
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 15px;
+  padding-right: 5px;
+}
+
+#todo-list li,
+#history-list li {
+  background-color: #2e2e2e;
+  margin-bottom: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  word-break: break-word;
+}
+
+#todo-list li.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-remove {
+  background: none;
+  border: none;
+  color: tomato;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+#todo-list::-webkit-scrollbar,
+#history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#todo-list::-webkit-scrollbar-thumb,
+#history-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
