@@ -17,16 +17,7 @@ Stay focused and productive by using the **Pomodoro Technique** — a time manag
 ---
 
 ## 🖼️ Preview
-
-> _(Add your screenshot here)_  
-> ![Pomodoro Screenshot](./img/screenshot.png)
-
----
-
-## 📁 Project Structure
-
-<pre> ```text /pomodoro-timer ├── index.html # Main HTML file ├── css/ │ └── style.css # Timer and To-Do List styling ├── js/ │ └── main.js # Timer + To-Do logic ├── img/ │ └── icon.png # Tomato icon └── README.md # You're reading it! ``` </pre>
-
+![alt text](image.png)
 ---
 
 ## 💡 How to Use
