@@ -1,24 +1,22 @@
+import { startTimer, pauseTimer, resumeTimer, stopTimer, isPaused } from './timer.js';
+
 let pomodoro = document.getElementById("pomodoro-timer");
 let short = document.getElementById("short-timer");
 let long = document.getElementById("long-timer");
 let currentTimer = pomodoro;
-let myInterval = null;
-let isPaused = false;
-let pauseTimeRemaining = 0;
 let todos = [];
 let history = [];
+
 const pauseBtn = document.getElementById("pause");
+const buttons = document.querySelectorAll(".button-container .button");
 
 function hideAll() {
     document.querySelectorAll(".timer-display").forEach(timer => timer.style.display = "none");
 }
 
-const buttons = document.querySelectorAll(".button-container .button");
-
 buttons.forEach(button => {
     button.addEventListener("click", function () {
         buttons.forEach(btn => btn.classList.remove("active"));
-
         this.classList.add("active");
 
         hideAll();
@@ -35,39 +33,8 @@ buttons.forEach(button => {
     });
 });
 
-
-function startTimer(timerDisplay, resume = false) {
-    if (myInterval) clearInterval(myInterval);
-    let durationInMs;
-
-    if (resume && pauseTimeRemaining) {
-        durationInMs = pauseTimeRemaining;
-    } else {
-        const duration = parseFloat(timerDisplay.getAttribute("data-duration"));
-        durationInMs = duration * 60 * 1000;
-    }
-
-    const endTimestamp = Date.now() + durationInMs;
-
-    myInterval = setInterval(() => {
-        const timeLeft = endTimestamp - Date.now();
-        pauseTimeRemaining = timeLeft;
-
-        if (timeLeft <= 0) {
-            clearInterval(myInterval);
-            new Audio("/assets/audio.mp3").play()
-            timerDisplay.textContent = "00:00";
-        } else {
-            const minutes = Math.floor(timeLeft / 60000);
-            const seconds = Math.floor((timeLeft % 60000) / 1000);
-            timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-        }
-    }, 1000);
-}
-
 document.getElementById("start").addEventListener("click", () => {
     if (currentTimer) {
-        isPaused = false;
         startTimer(currentTimer);
         document.getElementById("timer-message").style.display = "none";
     } else {
@@ -75,28 +42,16 @@ document.getElementById("start").addEventListener("click", () => {
     }
 });
 
-
 pauseBtn.addEventListener("click", () => {
-    if (myInterval && !isPaused) {
-        clearInterval(myInterval);
-        isPaused = true;
-
-        pauseBtn.textContent = "Resume";
-        pauseBtn.classList.add("paused");
-    } else if (isPaused && currentTimer) {
-        isPaused = false;
-        startTimer(currentTimer, true);
-
-        pauseBtn.textContent = "Pause";
-        pauseBtn.classList.remove("paused");
+    if (!isPaused) {
+        pauseTimer(pauseBtn);
+    } else {
+        resumeTimer(currentTimer, pauseBtn);
     }
 });
 
 document.getElementById("stop").addEventListener("click", () => {
-    clearInterval(myInterval);
-    isPaused = false;
-    pauseTimeRemaining = 0;
-    currentTimer.textContent = currentTimer.getAttribute("data-duration") + ":00";
+    stopTimer(currentTimer);
 });
 
 
@@ -237,3 +192,41 @@ function updateEmptyMessage() {
     todoMsg.style.display = todoList.children.length === 0 ? "block" : "none";
     historyMsg.style.display = historyList.children.length === 0 ? "block" : "none";
 }
+
+
+const sessionWrapper = document.querySelector(".session-card-wrapper");
+const sessionToggle = document.getElementById("session-flip-toggle");
+const sessionBack = document.getElementById("session-flip-back");
+const sessionHistoryList = document.getElementById("session-history-list");
+
+sessionToggle.addEventListener("click", () => {
+  sessionWrapper.classList.add("flipped");
+});
+
+sessionBack.addEventListener("click", () => {
+  sessionWrapper.classList.remove("flipped");
+});
+
+function renderSessionHistory() {
+  const stored = localStorage.getItem("history");
+  const history = stored ? JSON.parse(stored) : [];
+  sessionHistoryList.innerHTML = "";
+
+  if (Array.isArray(history) && history.length) {
+    history.slice(0, 5).forEach((session, index) => {
+      const div = document.createElement("div");
+      div.innerHTML = `#${index + 1} • ${session.text}<br><small>${format(session.createdAt)} → ${format(session.finishedAt)}</small>`;
+      sessionHistoryList.appendChild(div);
+    });
+  } else {
+    sessionHistoryList.innerHTML = "<div>No sessions found.</div>";
+  }
+}
+
+function format(isoStr) {
+  const d = new Date(isoStr);
+  return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
+// Gọi khi load
+renderSessionHistory();

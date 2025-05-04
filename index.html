@@ -16,7 +16,7 @@
         <div class="row">
           <div class="timer">
             <img src="./img/icon.png" alt="Tomato" width="60" />
-            <h1>Pomodoro<br />Timer</h1>
+            <h1>Pomodoro Timer</h1>
 
             <div class="button-container">
               <button class="button" id="pomodoro-session">Pomodoro</button>
@@ -49,6 +49,19 @@
               <button id="pause">Pause</button>
               <button id="stop">Stop</button>
             </div>
+
+            <div
+              style="
+                text-decoration: underline;
+                color: lightgrey;
+                cursor: pointer;
+                margin-top: 32px;
+              "
+              onmouseover="this.style.color='grey'"
+              onmouseout="this.style.color='lightgrey'"
+            >
+              Session History
+            </div>
           </div>
 
           <div class="todo-wrapper">
@@ -74,13 +87,9 @@
               </div>
               <div class="todo-back">
                 <h2>History</h2>
-                <button
-                  id="clear-history"
-                  class="button"
-                  style="margin-top: 10px"
-                >
+                <div id="clear-history" style="margin-top: 10px; cursor: pointer;">
                   ❌
-                </button>
+                </div>
                 <ul id="history-list"></ul>
                 <p
                   id="empty-history"
@@ -97,6 +106,6 @@
         </div>
       </div>
     </div>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
