@@ -18,29 +18,20 @@ Stay focused and productive by using the **Pomodoro Technique** — a time manag
 
 ## 🖼️ Preview
 
-> *(Add your screenshot here)*  
-![Pomodoro Screenshot](./img/screenshot.png)
+> _(Add your screenshot here)_  
+> ![Pomodoro Screenshot](./img/screenshot.png)
 
 ---
 
 ## 📁 Project Structure
 
-/pomodoro-timer
-├── index.html # Main HTML file
-├── css/
-│ └── style.css # Timer and To-Do List styling
-├── js/
-│ └── main.js # Timer + To-Do logic
-├── img/
-│ └── icon.png # Tomato icon
-└── README.md # You're reading it!
-
+<pre> ```text /pomodoro-timer ├── index.html # Main HTML file ├── css/ │ └── style.css # Timer and To-Do List styling ├── js/ │ └── main.js # Timer + To-Do logic ├── img/ │ └── icon.png # Tomato icon └── README.md # You're reading it! ``` </pre>
 
 ---
 
 ## 💡 How to Use
 
-1. Open `index.html` directly in your browser *(or use a local server)*.
+1. Open `index.html` directly in your browser _(or use a local server)_.
 2. Select a session type: **Pomodoro**, **Short Break**, or **Long Break**.
 3. Click **Start** to begin the countdown.
 4. Use **Pause** to stop temporarily and **Resume** to continue.
@@ -65,4 +56,4 @@ Built with love, focus, and simplicity. Inspired by real productivity needs.
 
 ---
 
-⭐ *Contributions and suggestions are welcome!*
+⭐ _Contributions and suggestions are welcome!_
