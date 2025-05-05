@@ -11,46 +11,70 @@
   <body>
     <div class="page-wrapper">
       <div id="timer-message">Please select a timer before starting.</div>
-
       <div class="container">
         <div class="row">
-          <div class="timer">
-            <img src="./img/icon.png" alt="Tomato" width="60" />
-            <h1>Pomodoro Timer</h1>
+          <div class="timer-wrapper">
+            <div class="timer-inner">
+              <div class="timer-front">
+                <img src="./img/icon.png" alt="Tomato" width="60" />
+                <h2 id="timer-title" contenteditable="true">Pomodoro Timer</h2>
 
-            <div class="button-container">
-              <button class="button" id="pomodoro-session">Pomodoro</button>
-              <button class="button" id="short-break">Short Break</button>
-              <button class="button" id="long-break">Long Break</button>
-            </div>
+                <div class="button-container">
+                  <button class="button" id="pomodoro-session">Pomodoro</button>
+                  <button class="button" id="short-break">Short Break</button>
+                  <button class="button" id="long-break">Long Break</button>
+                </div>
 
-            <div id="pomodoro-timer" class="timer-display" data-duration="25">
-              25:00
+                <div
+                  id="pomodoro-timer"
+                  class="timer-display"
+                  data-duration="25"
+                  contenteditable="true"
+                  data-key="pomodoro"
+                >
+                  25:00
+                </div>
+                <div
+                  id="short-timer"
+                  class="timer-display"
+                  data-duration="5"
+                  style="display: none"
+                  contenteditable="true"
+                  data-key="short"
+                >
+                  5:00
+                </div>
+                <div
+                  id="long-timer"
+                  class="timer-display"
+                  data-duration="10"
+                  style="display: none"
+                  contenteditable="true"
+                  data-key="long"
+                >
+                  10:00
+                </div>
+
+                <div id="buttons">
+                  <button id="start">Start</button>
+                  <button id="pause">Pause</button>
+                  <button id="stop">Stop</button>
+                </div>
+              </div>
+
+              <div class="timer-back">
+                <h2>Session History</h2>
+                <ul id="session-list"></ul>
+                <p
+                  id="empty-session-history"
+                  style="text-align: center; color: #888; margin-top: 10px"
+                >
+                  Not found session!
+                </p>
+              </div>
             </div>
             <div
-              id="short-timer"
-              class="timer-display"
-              data-duration="5"
-              style="display: none"
-            >
-              5:00
-            </div>
-            <div
-              id="long-timer"
-              class="timer-display"
-              data-duration="10"
-              style="display: none"
-            >
-              10:00
-            </div>
-
-            <div id="buttons">
-              <button id="start">Start</button>
-              <button id="pause">Pause</button>
-              <button id="stop">Stop</button>
-            </div>
-
-            <div
+              id="toggle-session"
               style="
                 text-decoration: underline;
                 color: lightgrey;
@@ -87,7 +111,10 @@
               </div>
               <div class="todo-back">
                 <h2>History</h2>
-                <div id="clear-history" style="margin-top: 10px; cursor: pointer;">
+                <div
+                  id="clear-history"
+                  style="margin-top: 10px; cursor: pointer"
+                >
                   ❌
                 </div>
                 <ul id="history-list"></ul>
@@ -99,9 +126,19 @@
                 </p>
               </div>
             </div>
-            <button id="toggle-history" class="button" style="margin-top: 30px">
+            <div
+              id="toggle-history"
+              style="
+                text-decoration: underline;
+                color: lightgrey;
+                cursor: pointer;
+                margin-top: 32px;
+              "
+              onmouseover="this.style.color='grey'"
+              onmouseout="this.style.color='lightgrey'"
+            >
               View History
-            </button>
+            </div>
           </div>
         </div>
       </div>
